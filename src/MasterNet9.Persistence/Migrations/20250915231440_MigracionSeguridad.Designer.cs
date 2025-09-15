@@ -3,6 +3,7 @@ using System;
 using MasterNet9.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MasterNet9.Persistence.Migrations
 {
     [DbContext(typeof(MasterNet9DbContext))]
-    partial class MasterNet9DbContextModelSnapshot : ModelSnapshot
+    [Migration("20250915231440_MigracionSeguridad")]
+    partial class MigracionSeguridad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");

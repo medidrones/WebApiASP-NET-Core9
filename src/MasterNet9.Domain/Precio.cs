@@ -1,7 +1,8 @@
 ﻿namespace MasterNet9.Domain;
 
-public class Precio : BaseEntity
-{   
+public class Precio
+{
+    public Guid Id { get; set; }
     public string? Nombre { get; set; }
     public decimal PrecioActual { get; set; }
     public decimal PrecioPromocion { get; set; }
