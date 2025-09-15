@@ -7,15 +7,17 @@ namespace MasterNet9.Persistence;
 public class MasterNet9DbContext : DbContext
 {
     public DbSet<Curso>? Cursos { get; set; }
-    public DbSet<Instructor>? Instructores { get; set; }   
-    public DbSet<Precio>? Precios { get; set; }    
-    public DbSet<Calificacion>? Calificaciones { get; set; }   
+    public DbSet<Instructor>? Instructores { get; set; }
+    public DbSet<Precio>? Precios { get; set; }
+    public DbSet<Calificacion>? Calificaciones { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data Source=LocalDatabase.db")
-            .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, Microsoft.Extensions.Logging.LogLevel.Information)
-            .EnableSensitiveDataLogging();
+        .LogTo(
+            Console.WriteLine,
+            new[] { DbLoggerCategory.Database.Command.Name },
+            Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,7 +42,7 @@ public class MasterNet9DbContext : DbContext
 
         modelBuilder.Entity<Precio>()
             .Property(b => b.Nombre)
-            .HasColumnType("VARCHAR)")
+            .HasColumnType("VARCHAR")
             .HasMaxLength(250);
 
         modelBuilder.Entity<Curso>()
@@ -53,7 +55,7 @@ public class MasterNet9DbContext : DbContext
         modelBuilder.Entity<Curso>()
             .HasMany(m => m.Calificaciones)
             .WithOne(m => m.Curso)
-            .HasForeignKey(m =>m.CursoId)
+            .HasForeignKey(m => m.CursoId)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Curso>()
@@ -70,25 +72,26 @@ public class MasterNet9DbContext : DbContext
                     .HasForeignKey(p => p.CursoId),
                 j =>
                 {
-                    j.HasKey(t => new { t.CursoId, t.PrecioId });
-                });
+                    j.HasKey(t => new { t.PrecioId, t.CursoId });
+                }
+            );
 
         modelBuilder.Entity<Curso>()
             .HasMany(m => m.Instructores)
             .WithMany(m => m.Cursos)
             .UsingEntity<CursoInstructor>(
                 j => j
-                    .HasOne(i => i.Instructor)
-                    .WithMany(i => i.CursoInstructores)
-                    .HasForeignKey(i => i.InstructorId),
+                .HasOne(p => p.Instructor)
+                .WithMany(p => p.CursoInstructores)
+                .HasForeignKey(p => p.InstructorId),
                 j => j
-                    .HasOne(i => i.Curso)
-                    .WithMany(i => i.CursoInstructores)
-                    .HasForeignKey(i => i.CursoId),
-                j =>
-                {
-                    j.HasKey(t => new { t.CursoId, t.InstructorId });
-                });
+                .HasOne(p => p.Curso)
+                .WithMany(p => p.CursoInstructores)
+                .HasForeignKey(p => p.CursoId),
+                j => {
+                j.HasKey(t => new { t.InstructorId, t.CursoId });
+            }
+        );
 
         modelBuilder.Entity<Curso>().HasData(DataMaster().Item1);
         modelBuilder.Entity<Precio>().HasData(DataMaster().Item2);
@@ -100,7 +103,7 @@ public class MasterNet9DbContext : DbContext
         var cursos = new List<Curso>();
         var faker = new Faker();
 
-        for (var i = 1; i < 10; i++) 
+        for (var i = 1; i < 10; i++)
         {
             var cursoId = Guid.NewGuid();
             cursos.Add(
@@ -110,7 +113,8 @@ public class MasterNet9DbContext : DbContext
                     Descripcion = faker.Commerce.ProductDescription(),
                     Titulo = faker.Commerce.ProductName(),
                     FechaPublicacion = DateTime.UtcNow
-                });
+                }
+            );
         }
 
         var precioId = Guid.NewGuid();
