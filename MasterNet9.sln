@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterNet9.Domain", "src\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterNet9.Persistence", "src\MasterNet9.Persistence\MasterNet9.Persistence.csproj", "{B1243955-2F53-401E-BC77-2C899F9B4186}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterNet9.Application", "src\MasterNet9.Application\MasterNet9.Application.csproj", "{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,18 @@ Global
 		{B1243955-2F53-401E-BC77-2C899F9B4186}.Release|x64.Build.0 = Release|Any CPU
 		{B1243955-2F53-401E-BC77-2C899F9B4186}.Release|x86.ActiveCfg = Release|Any CPU
 		{B1243955-2F53-401E-BC77-2C899F9B4186}.Release|x86.Build.0 = Release|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Debug|x64.Build.0 = Debug|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Debug|x86.Build.0 = Debug|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Release|x64.ActiveCfg = Release|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Release|x64.Build.0 = Release|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Release|x86.ActiveCfg = Release|Any CPU
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +79,7 @@ Global
 		{8DA28D4D-F4CB-4AB1-894C-B2938DC45AAE} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{12F7DA85-DD88-456A-9859-08C7ABC5F971} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{B1243955-2F53-401E-BC77-2C899F9B4186} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{EB2A8316-EF02-4BA7-A0FA-9AC684690E3F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8E34BFA-8B79-4C3F-8964-DE440625237D}
