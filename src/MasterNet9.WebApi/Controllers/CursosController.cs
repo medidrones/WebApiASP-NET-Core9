@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using static MasterNet9.Application.Cursos.CursoCreate.CursoCreateCommand;
+using static MasterNet9.Application.Cursos.CursoReportExcel.CursoReportExcelQuery;
 
 namespace MasterNet9.WebApi.Controllers;
 
@@ -23,5 +24,16 @@ public class CursosController : ControllerBase
         var resultado = await _sender.Send(command, cancellationToken);
 
         return Ok(resultado);
+    }
+
+    [HttpGet("reporte")]
+    public async Task<IActionResult> ReporteCSV(CancellationToken cancellationToken)
+    {
+        var query = new CursoReporteExcelQueryRequest();
+        var resultado = await _sender.Send(query, cancellationToken);
+
+        byte[] excelBytes = resultado.ToArray();
+
+        return File(excelBytes, "text/csv", "cursos.csv");
     }
 }

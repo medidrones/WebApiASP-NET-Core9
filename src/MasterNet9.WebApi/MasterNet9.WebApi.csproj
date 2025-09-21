@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MasterNet9.Application\MasterNet9.Application.csproj" />
+    <ProjectReference Include="..\MasterNet9.Infrastructure\MasterNet9.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
