@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using MasterNet9.Application.Cursos.CursoCreate;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MasterNet9.Application;
 
@@ -6,7 +9,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {        
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));               
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));   
+        services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssemblyContaining<CursoCreateCommand>();
 
         return services;
     }

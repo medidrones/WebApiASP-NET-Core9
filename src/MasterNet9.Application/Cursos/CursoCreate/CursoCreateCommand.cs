@@ -1,4 +1,5 @@
-﻿using MasterNet9.Application.Core;
+﻿using FluentValidation;
+using MasterNet9.Application.Core;
 using MasterNet9.Domain;
 using MasterNet9.Persistence;
 using MediatR;
@@ -36,6 +37,14 @@ public class CursoCreateCommand
             return resultado 
                 ? Result<Guid>.Success(curso.Id)
                 : Result<Guid>.Failure("No se pudo insertar el curso");
+        }
+    }
+
+    public class CursoCreateCommandRequestValidator : AbstractValidator<CursoCreateCommandRequest>
+    {
+        public CursoCreateCommandRequestValidator()
+        {
+            RuleFor(x => x.cursoCreateRequest).SetValidator(new CursoCreateValidator());
         }
     }
 }
