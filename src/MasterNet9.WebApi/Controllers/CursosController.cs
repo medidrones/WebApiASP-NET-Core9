@@ -1,10 +1,12 @@
 ﻿using MasterNet9.Application.Core;
 using MasterNet9.Application.Cursos.CursoCreate;
+using MasterNet9.Application.Cursos.GetCursos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using static MasterNet9.Application.Cursos.CursoCreate.CursoCreateCommand;
 using static MasterNet9.Application.Cursos.CursoReportExcel.CursoReportExcelQuery;
 using static MasterNet9.Application.Cursos.GetCurso.GetCursoQuery;
+using static MasterNet9.Application.Cursos.GetCursos.GetCursosQuery;
 
 namespace MasterNet9.WebApi.Controllers;
 
@@ -17,6 +19,15 @@ public class CursosController : ControllerBase
     public CursosController(ISender sender)
     {
         _sender = sender;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> PaginationCursos([FromQuery] GetCursosRequest request, CancellationToken cancellationToken)
+    {
+        var query = new GetCursosQueryRequest { CursosRequest = request };
+        var resultado = await _sender.Send(query, cancellationToken);
+
+        return resultado.IsSuccess ? Ok(resultado.Value) : NotFound();
     }
 
     [HttpPost("create")]

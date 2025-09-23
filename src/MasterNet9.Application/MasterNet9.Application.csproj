@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Cursos\CursoDelete\" />
     <Folder Include="Cursos\CursoUpdate\" />
-    <Folder Include="Cursos\GetCursos\" />
   </ItemGroup>
 
 </Project>
