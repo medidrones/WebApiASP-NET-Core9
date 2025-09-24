@@ -49,6 +49,30 @@ public class CursoCreateCommand
                 curso.Photos = new List<Photo> { photo };
             }
 
+            if (request.cursoCreateRequest.InstructorId is not null) 
+            {
+                var intructor = _context.Instructores!.FirstOrDefault(x => x.Id == request.cursoCreateRequest.InstructorId);
+
+                if (intructor is null) 
+                {
+                    return Result<Guid>.Failure("No se encontró el instructor");
+                }
+
+                curso.Instructores = new List<Instructor> { intructor };
+            }
+
+            if (request.cursoCreateRequest.PrecioId is not null)
+            {
+                var precio = _context.Precios!.FirstOrDefault(x => x.Id == request.cursoCreateRequest.PrecioId);
+
+                if (precio is null)
+                {
+                    return Result<Guid>.Failure("No se encontró el precio");
+                }
+
+                curso.Precios = new List<Precio> { precio };
+            }
+
             _context.Add(curso);
 
             var resultado = await _context.SaveChangesAsync(cancellationToken) > 0;

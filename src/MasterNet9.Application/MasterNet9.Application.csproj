@@ -17,9 +17,4 @@
     <ProjectReference Include="..\MasterNet9.Persistence\MasterNet9.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Cursos\CursoDelete\" />
-    <Folder Include="Cursos\CursoUpdate\" />
-  </ItemGroup>
-
 </Project>
