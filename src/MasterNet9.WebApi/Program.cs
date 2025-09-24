@@ -1,5 +1,7 @@
 using MasterNet9.Application;
 using MasterNet9.Application.Interfaces;
+using MasterNet9.Infrastructure.Photos;
+using MasterNet9.Infrastructure.Photosl;
 using MasterNet9.Infrastructure.Reports;
 using MasterNet9.Persistence;
 using MasterNet9.Persistence.Models;
@@ -11,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(nameof(CloudinarySettings)));
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddScoped(typeof(IReportService<>), typeof(ReportService<>));
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();

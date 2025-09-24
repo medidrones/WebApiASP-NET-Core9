@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MasterNet9.Application.Core;
+using MasterNet9.Application.Interfaces;
 using MasterNet9.Domain;
 using MasterNet9.Persistence;
 using MediatR;
@@ -14,21 +15,39 @@ public class CursoCreateCommand
     internal class CursoCreateCommandHandler : IRequestHandler<CursoCreateCommandRequest, Result<Guid>>
     {
         private readonly MasterNet9DbContext _context;
+        private readonly IPhotoService _photoService;
 
-        public CursoCreateCommandHandler(MasterNet9DbContext context)
+        public CursoCreateCommandHandler(MasterNet9DbContext context, IPhotoService photoService)
         {
             _context = context;
+            _photoService = photoService;
         }
 
         public async Task<Result<Guid>> Handle(CursoCreateCommandRequest request, CancellationToken cancellationToken)
         {
+            var cursoId = Guid.NewGuid();
+
             var curso = new Curso
             {
-                Id = Guid.NewGuid(),
+                Id = cursoId,
                 Titulo = request.cursoCreateRequest.Titulo,
                 Descripcion = request.cursoCreateRequest.Descripcion,
                 FechaPublicacion = request.cursoCreateRequest.FechaPublicacion,
             };
+
+            if (request.cursoCreateRequest.Foto is not null)
+            {
+                var photoUploadResult = await _photoService.AddPhoto(request.cursoCreateRequest.Foto);  
+                
+                var photo = new Photo
+                {                   
+                    Url = photoUploadResult.Url,
+                    PublicId = photoUploadResult.PublicId,
+                    CursoId = cursoId
+                };
+                
+                curso.Photos = new List<Photo> { photo };
+            }
 
             _context.Add(curso);
 

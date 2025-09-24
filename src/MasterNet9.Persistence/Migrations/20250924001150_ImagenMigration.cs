@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MasterNet9.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracionInicial : Migration
+    public partial class ImagenMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -229,7 +229,8 @@ namespace MasterNet9.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Url = table.Column<string>(type: "TEXT", nullable: true),
-                    CursoId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    CursoId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    PublicId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -295,8 +296,8 @@ namespace MasterNet9.Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "cdb40382-9935-497e-85ea-62f51d69edd0", null, "ADMIN", "ADMIN" },
-                    { "d52c156d-eff4-462f-955b-1246d6cf4fb2", null, "CLIENT", "CLIENT" }
+                    { "13fb926c-5b58-492e-a488-56a6d804b239", null, "ADMIN", "ADMIN" },
+                    { "fe66f542-08b5-4fee-8f82-7d563dac2f16", null, "CLIENT", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -304,15 +305,15 @@ namespace MasterNet9.Persistence.Migrations
                 columns: new[] { "Id", "Descripcion", "FechaPublicacion", "Titulo" },
                 values: new object[,]
                 {
-                    { new Guid("2b814529-8a73-438d-b6b3-b053d4559aff"), "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8946), "Tasty Metal Shirt" },
-                    { new Guid("399bc701-d4d3-422c-b0e7-c60abab82a09"), "The Football Is Good For Training And Recreational Purposes", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8980), "Sleek Fresh Shirt" },
-                    { new Guid("3c07fba5-d2f5-4524-96b7-be2c2a5591c2"), "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8899), "Fantastic Plastic Sausages" },
-                    { new Guid("52a14063-da10-4b4c-a109-89259045fbb6"), "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8937), "Handmade Granite Computer" },
-                    { new Guid("56f1cad0-cdc4-4b62-9c96-8bc51381900b"), "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8911), "Awesome Rubber Hat" },
-                    { new Guid("90fcd4a5-1323-4b77-a943-c6fc843658d7"), "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8684), "Practical Steel Salad" },
-                    { new Guid("a0d3a943-0388-4d03-b2ca-b75d72ac34f0"), "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8954), "Refined Rubber Hat" },
-                    { new Guid("bc7cf86a-65a7-4ecc-981d-4116eae74d0e"), "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8973), "Sleek Steel Bacon" },
-                    { new Guid("df0a9812-732b-42ae-b422-037f1f49fd00"), "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support", new DateTime(2025, 9, 16, 22, 19, 37, 46, DateTimeKind.Utc).AddTicks(8928), "Handmade Granite Bike" }
+                    { new Guid("048c3313-e232-41d6-928f-41762967d651"), "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3190), "Practical Cotton Shoes" },
+                    { new Guid("131445d7-fbd6-47a7-9f26-40be8c250fce"), "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3227), "Ergonomic Frozen Sausages" },
+                    { new Guid("1621b994-b775-4f7e-8922-17383813bd89"), "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3233), "Intelligent Steel Shoes" },
+                    { new Guid("4cc1fe48-d321-4f03-998d-bc825f37d2f5"), "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3196), "Sleek Wooden Shoes" },
+                    { new Guid("604aef1c-b316-4c66-b50c-9148807f3d5a"), "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3180), "Small Rubber Bacon" },
+                    { new Guid("798f78c1-f755-41d7-8ced-6896d5ddc5f9"), "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3158), "Gorgeous Cotton Fish" },
+                    { new Guid("90745dde-7bd5-4def-9af2-5f8574fc311b"), "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3206), "Awesome Granite Shirt" },
+                    { new Guid("b61eedaf-6767-41dc-b540-46ad1415ab75"), "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(3213), "Ergonomic Concrete Car" },
+                    { new Guid("f5a5e181-45f7-4ba0-9558-7ba36eea2245"), "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", new DateTime(2025, 9, 24, 0, 11, 48, 711, DateTimeKind.Utc).AddTicks(2950), "Handmade Plastic Mouse" }
                 });
 
             migrationBuilder.InsertData(
@@ -320,42 +321,42 @@ namespace MasterNet9.Persistence.Migrations
                 columns: new[] { "Id", "Apellidos", "Grado", "Nombre" },
                 values: new object[,]
                 {
-                    { new Guid("06d53701-7f87-4302-84cd-72162e7d5d0b"), "Goldner", "Future Metrics Associate", "Octavia" },
-                    { new Guid("1f6f8d9c-267e-41d1-b1ee-444cbd335a68"), "Christiansen", "Product Markets Assistant", "Shea" },
-                    { new Guid("313b3f6f-23c9-4eaa-8a61-65cf05d8c557"), "Erdman", "District Configuration Designer", "Lempi" },
-                    { new Guid("4f158e88-997b-4e3c-bff2-48eec1986295"), "Marquardt", "Chief Marketing Facilitator", "Malcolm" },
-                    { new Guid("97876c76-e3ab-4612-9a4c-0ae482fd63da"), "Bernhard", "Internal Operations Consultant", "Baylee" },
-                    { new Guid("9a8f75f4-657b-404d-bec4-c6790c38ca31"), "Bins", "Investor Interactions Facilitator", "Mose" },
-                    { new Guid("9b635207-a1ae-45b2-b736-766f32dd7ea9"), "Mohr", "Human Quality Designer", "Dell" },
-                    { new Guid("aacab6d4-8106-417b-88e5-7584ba88ffcb"), "Nolan", "Legacy Directives Director", "Reagan" },
-                    { new Guid("ba948aed-6509-4e00-9bcd-2fba9cd3dca0"), "Gorczany", "Principal Directives Architect", "Beryl" },
-                    { new Guid("f6730731-4845-442d-a9af-4ff02e3d2e57"), "Kulas", "Human Integration Specialist", "Janice" }
+                    { new Guid("0c7c918e-97eb-4750-8977-fcd4e72ef20f"), "Jakubowski", "Direct Tactics Strategist", "Magnus" },
+                    { new Guid("2e804702-a401-49e7-8ba4-0727f7dc4b17"), "Bailey", "Regional Factors Agent", "Stanley" },
+                    { new Guid("48548e21-f2b7-49e0-8162-c2b8c9a473b9"), "Kulas", "Corporate Assurance Representative", "Kim" },
+                    { new Guid("4906c791-d427-4b5e-9814-f2ebdb381c8e"), "Jones", "International Division Designer", "Laisha" },
+                    { new Guid("75620d2e-da5a-4ce2-ac05-fdf38204de73"), "Deckow", "Chief Research Orchestrator", "Deborah" },
+                    { new Guid("79fc6c8c-c22a-49a5-8b53-572acac3d63c"), "Hane", "Principal Applications Developer", "Mark" },
+                    { new Guid("9392efdb-2e6f-4c64-89c9-fc44e97871b1"), "Harris", "Internal Markets Liaison", "Assunta" },
+                    { new Guid("b8d5f84a-c046-4316-bd78-76b1f6fec522"), "Pouros", "Senior Interactions Supervisor", "Celia" },
+                    { new Guid("d5af3420-17b2-4e12-ac2e-70be7cf7176a"), "Rutherford", "Investor Brand Producer", "Edwina" },
+                    { new Guid("fd4a67b0-c04f-4696-bd35-4518d7308c64"), "Gibson", "Investor Tactics Orchestrator", "Isobel" }
                 });
 
             migrationBuilder.InsertData(
                 table: "precios",
                 columns: new[] { "Id", "Nombre", "PrecioActual", "PrecioPromocion" },
-                values: new object[] { new Guid("c7e463e1-2a13-4be0-96d3-6b32870c06e0"), "Precio Regular", 10.0m, 8.0m });
+                values: new object[] { new Guid("d7597e3b-f2b7-419e-8e9b-d056fb2e832f"), "Precio Regular", 10.0m, 8.0m });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoleClaims",
                 columns: new[] { "Id", "ClaimType", "ClaimValue", "RoleId" },
                 values: new object[,]
                 {
-                    { 1, "POLICIES", "CURSO_READ", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 2, "POLICIES", "CURSO_UPADATE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 3, "POLICIES", "CURSO_WRITE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 4, "POLICIES", "CURSO_DELETE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 5, "POLICIES", "INSTRUCTOR_CREATE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 6, "POLICIES", "INSTRUCTOR_READ", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 7, "POLICIES", "INSTRUCTOR_UPDATE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 8, "POLICIES", "COMENTARIO_READ", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 9, "POLICIES", "COMENTARIO_DELETE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 10, "POLICIES", "COMENTARIO_CREATE", "cdb40382-9935-497e-85ea-62f51d69edd0" },
-                    { 11, "POLICIES", "CURSO_READ", "d52c156d-eff4-462f-955b-1246d6cf4fb2" },
-                    { 12, "POLICIES", "INSTRUCTOR_READ", "d52c156d-eff4-462f-955b-1246d6cf4fb2" },
-                    { 13, "POLICIES", "COMENTARIO_READ", "d52c156d-eff4-462f-955b-1246d6cf4fb2" },
-                    { 14, "POLICIES", "COMENTARIO_CREATE", "d52c156d-eff4-462f-955b-1246d6cf4fb2" }
+                    { 1, "POLICIES", "CURSO_READ", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 2, "POLICIES", "CURSO_UPADATE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 3, "POLICIES", "CURSO_WRITE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 4, "POLICIES", "CURSO_DELETE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 5, "POLICIES", "INSTRUCTOR_CREATE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 6, "POLICIES", "INSTRUCTOR_READ", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 7, "POLICIES", "INSTRUCTOR_UPDATE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 8, "POLICIES", "COMENTARIO_READ", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 9, "POLICIES", "COMENTARIO_DELETE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 10, "POLICIES", "COMENTARIO_CREATE", "13fb926c-5b58-492e-a488-56a6d804b239" },
+                    { 11, "POLICIES", "CURSO_READ", "fe66f542-08b5-4fee-8f82-7d563dac2f16" },
+                    { 12, "POLICIES", "INSTRUCTOR_READ", "fe66f542-08b5-4fee-8f82-7d563dac2f16" },
+                    { 13, "POLICIES", "COMENTARIO_READ", "fe66f542-08b5-4fee-8f82-7d563dac2f16" },
+                    { 14, "POLICIES", "COMENTARIO_CREATE", "fe66f542-08b5-4fee-8f82-7d563dac2f16" }
                 });
 
             migrationBuilder.CreateIndex(
