@@ -1,6 +1,8 @@
-﻿using MasterNet9.Application.Instructores.GetInstructores;
+﻿using MasterNet9.Application.Core;
+using MasterNet9.Application.Instructores.GetInstructores;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using static MasterNet9.Application.Instructores.GetInstructores.GetIntructoresQuery;
 
 namespace MasterNet9.WebApi.Controllers;
@@ -17,7 +19,8 @@ public class InstructoresController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult> PaginationInstructor([FromQuery] GetInstructoresRequest request, CancellationToken cancellationToken)
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    public async Task<ActionResult<PagedList<InstructorResponse>>> PaginationInstructor([FromQuery] GetInstructoresRequest request, CancellationToken cancellationToken)
     {
         var query = new GetInstructoresQueryRequest { InstructorRequest = request };
         var resultados = await _sender.Send(query, cancellationToken);

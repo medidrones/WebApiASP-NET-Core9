@@ -1,6 +1,8 @@
-﻿using MasterNet9.Application.Precios.GetPrecios;
+﻿using MasterNet9.Application.Core;
+using MasterNet9.Application.Precios.GetPrecios;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using static MasterNet9.Application.Precios.GetPrecios.GetPreciosQuery;
 
 namespace MasterNet9.WebApi.Controllers;
@@ -17,11 +19,14 @@ public class PreciosController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult> PaginationPrecio([FromQuery] GetPreciosRequest request, CancellationToken cancellationToken)
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    public async Task<ActionResult<PagedList<PrecioResponse>>> PaginationPrecio([FromQuery] GetPreciosRequest request, CancellationToken cancellationToken)
     {
         var query = new GetPreciosQueryRequest { PreciosRequest = request };
         var resultados = await _sender.Send(query, cancellationToken);
 
-        return resultados.IsSuccess ? Ok(resultados.Value) : NotFound();
+        return resultados.IsSuccess 
+            ? Ok(resultados.Value) 
+            : NotFound();
     }
 }

@@ -1,6 +1,9 @@
-﻿using MasterNet9.Application.Calificaciones.GetCalificaciones;
+﻿using MasterNet9.Application.Calificaciones.GetCalificacione;
+using MasterNet9.Application.Calificaciones.GetCalificaciones;
+using MasterNet9.Application.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using static MasterNet9.Application.Calificaciones.GetCalificacione.GetCalificacionesQuery;
 
 namespace MasterNet9.WebApi.Controllers;
@@ -17,11 +20,14 @@ public class CalificacionesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult> PaginationCalificacion([FromQuery] GetCalificacionesRequest request, CancellationToken cancellationToken)
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    public async Task<ActionResult<PagedList<CalificacionResponse>>> PaginationCalificacion([FromQuery] GetCalificacionesRequest request, CancellationToken cancellationToken)
     {
         var query = new GetCalificacionesQueryRequest { CalificacionesRequest = request };
         var resultados = await _sender.Send(query, cancellationToken);
 
-        return resultados.IsSuccess ? Ok(resultados.Value) : NotFound();
+        return resultados.IsSuccess 
+            ? Ok(resultados.Value) 
+            : NotFound();
     }
 }
