@@ -18,22 +18,13 @@ builder.Services.AddScoped(typeof(IReportService<>), typeof(ReportService<>));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-if (app.Environment.IsDevelopment()
-    || app.Environment.IsStaging()
-    || app.Environment.IsProduction())
-{
-    app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+app.useSwaggerDocumentation();
 app.UseAuthentication();
 app.UseAuthorization();
 
