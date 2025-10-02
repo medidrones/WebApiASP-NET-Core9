@@ -2,6 +2,7 @@
 using MasterNet9.Application.Calificaciones.GetCalificaciones;
 using MasterNet9.Application.Core;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using static MasterNet9.Application.Calificaciones.GetCalificacione.GetCalificacionesQuery;
@@ -19,6 +20,7 @@ public class CalificacionesController : ControllerBase
         _sender = sender;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<PagedList<CalificacionResponse>>> PaginationCalificacion([FromQuery] GetCalificacionesRequest request, CancellationToken cancellationToken)

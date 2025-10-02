@@ -1,6 +1,7 @@
 ﻿using MasterNet9.Application.Core;
 using MasterNet9.Application.Instructores.GetInstructores;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using static MasterNet9.Application.Instructores.GetInstructores.GetIntructoresQuery;
@@ -18,6 +19,7 @@ public class InstructoresController : ControllerBase
         _sender = sender;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<PagedList<InstructorResponse>>> PaginationInstructor([FromQuery] GetInstructoresRequest request, CancellationToken cancellationToken)

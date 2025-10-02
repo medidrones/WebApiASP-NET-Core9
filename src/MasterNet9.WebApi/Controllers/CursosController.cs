@@ -2,6 +2,7 @@
 using MasterNet9.Application.Cursos.CursoCreate;
 using MasterNet9.Application.Cursos.CursoUpdate;
 using MasterNet9.Application.Cursos.GetCursos;
+using MasterNet9.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,6 @@ using static MasterNet9.Application.Cursos.GetCursos.GetCursosQuery;
 namespace MasterNet9.WebApi.Controllers;
 
 [ApiController]
-[Authorize]
 [Route("api/cursos")]
 public class CursosController : ControllerBase
 {
@@ -27,6 +27,7 @@ public class CursosController : ControllerBase
         _sender = sender;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<PagedList<CursoResponse>>> PaginationCursos([FromQuery] GetCursosRequest request, CancellationToken cancellationToken)
@@ -39,6 +40,7 @@ public class CursosController : ControllerBase
             : NotFound();
     }
 
+    [Authorize(Policy = PolicyMaster.CURSO_WRITE)]
     [HttpPost]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<Result<Guid>>> CursoCreate([FromForm] CursoCreateRequest request, CancellationToken cancellationToken)
@@ -51,6 +53,7 @@ public class CursosController : ControllerBase
             : BadRequest();
     }
 
+    [Authorize(Policy = PolicyMaster.CURSO_UPADATE)]
     [HttpPut("{id}")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<Result<Guid>>> CursoUpdate([FromBody] CursoUpdateRequest request, Guid id, CancellationToken cancellationToken)
@@ -63,6 +66,7 @@ public class CursosController : ControllerBase
             : BadRequest();
     }
 
+    [Authorize(Policy = PolicyMaster.CURSO_DELETE)]
     [HttpDelete("{id}")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<Unit>> CursoDelete(Guid id, CancellationToken cancellationToken)
@@ -75,6 +79,7 @@ public class CursosController : ControllerBase
             : BadRequest();
     }
 
+    [AllowAnonymous]
     [HttpGet("{id}")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<CursoResponse>> CursoGet(Guid id, CancellationToken cancellationToken)
@@ -87,6 +92,7 @@ public class CursosController : ControllerBase
             : BadRequest();
     }
 
+    [AllowAnonymous]
     [HttpGet("reporte")]
     public async Task<IActionResult> ReporteCSV(CancellationToken cancellationToken)
     {
