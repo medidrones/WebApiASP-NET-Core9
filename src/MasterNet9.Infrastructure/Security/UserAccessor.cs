@@ -11,10 +11,15 @@ public class UserAccessor : IUserAccessor
     public UserAccessor(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
-    }
+    }    
 
     public string GetUsername()
     {
         return _httpContextAccessor.HttpContext!.User.FindFirstValue(ClaimTypes.Name)!;
+    }
+
+    public string GetEmail()
+    {
+        return _httpContextAccessor.HttpContext!.User.FindFirstValue(ClaimTypes.Email)!;
     }
 }
