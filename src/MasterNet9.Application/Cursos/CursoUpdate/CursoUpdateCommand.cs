@@ -9,7 +9,7 @@ namespace MasterNet9.Application.Cursos.CursoUpdate;
 public class CursoUpdateCommand
 {
     public record CursoUpdateCommandRequest(CursoUpdateRequest CursoUpdateRequest, Guid? CursoId) 
-        : IRequest<Result<Guid>>;
+        : IRequest<Result<Guid>>, ICommandBase;
 
     internal class CursoUpdateCommandHandler : IRequestHandler<CursoUpdateCommandRequest, Result<Guid>>
     {

@@ -10,7 +10,7 @@ namespace MasterNet9.Application.Cursos.CursoCreate;
 public class CursoCreateCommand
 {
     public record CursoCreateCommandRequest(CursoCreateRequest cursoCreateRequest) 
-        : IRequest<Result<Guid>>;
+        : IRequest<Result<Guid>>, ICommandBase;
 
     internal class CursoCreateCommandHandler : IRequestHandler<CursoCreateCommandRequest, Result<Guid>>
     {

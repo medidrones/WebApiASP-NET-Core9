@@ -6,10 +6,24 @@ public class RegisterValidator : AbstractValidator<RegisterRequest>
 {
     public RegisterValidator() 
     {
-        RuleFor(x => x.Email).NotEmpty().EmailAddress();
-        RuleFor(x => x.Password).NotEmpty();
-        RuleFor(x => x.NombreCompleto).NotEmpty();    
-        RuleFor(x => x.Carrera).NotEmpty();    
-        RuleFor(x => x.Username).NotEmpty();    
+        RuleFor(x => x.Email)
+            .NotEmpty()            
+            .WithMessage("El Email no es correcto");
+
+        RuleFor(x => x.Password)
+            .NotEmpty()
+            .WithMessage("El password esta en blanco");
+
+        RuleFor(x => x.NombreCompleto)
+            .NotEmpty()
+            .WithMessage("El nombre es nulo");  
+        
+        RuleFor(x => x.Carrera)
+            .NotEmpty()
+            .WithMessage("La carrera esta en blanco");    
+
+        RuleFor(x => x.Username)
+            .NotEmpty()
+            .WithMessage("Ingrese un username");    
     }
 }

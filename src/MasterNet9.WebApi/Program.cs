@@ -20,6 +20,10 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerDocumentation();
+builder.Services.AddCors(o => o.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
@@ -28,6 +32,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.useSwaggerDocumentation();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("corsapp");
 
 await app.SeedDataAuthentication();
 

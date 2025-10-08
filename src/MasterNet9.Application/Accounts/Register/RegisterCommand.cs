@@ -10,7 +10,7 @@ namespace MasterNet9.Application.Accounts.Register;
 
 public class RegisterCommand
 {
-    public record RegisterCommandRequest(RegisterRequest registerRequest) : IRequest<Result<Profile>>;
+    public record RegisterCommandRequest(RegisterRequest registerRequest) : IRequest<Result<Profile>>, ICommandBase;
 
     internal class RegisterCommandHandler : IRequestHandler<RegisterCommandRequest, Result<Profile>>
     {
